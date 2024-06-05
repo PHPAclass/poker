@@ -1,3 +1,8 @@
+<?php
+require_once('backend.php');
+main();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,6 +12,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+    <?php echo($cards); ?>
     <section>
         <p>プレイヤー3</p>
         <div>
