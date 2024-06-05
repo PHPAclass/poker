@@ -12,8 +12,8 @@
     </header>
     <section class="home">
         <img src="./img/poker_logo.png" alt="poker logo" class="poker_logo">
-        <form action="" method="POST">
-            <button type="submit" name="play">ゲームスタート</button>
+        <form action="game.php" method="POST">
+            <button type="submit" name="mode" value="start">Game Start</button>
         </form>
     </section>
 </body>
