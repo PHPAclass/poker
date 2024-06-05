@@ -18,7 +18,6 @@
         return 0;
     }
 
-
     function rise()
     {
         return 0;
@@ -37,6 +36,16 @@
     }
 
     function continueGame()
+    {
+        return 0;
+    }
+
+    function judge()
+    {
+        return 0;
+    }
+
+    function enemyAction()
     {
         return 0;
     }
