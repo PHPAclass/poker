@@ -62,4 +62,5 @@ VALUES
 ('spades', 10, 'spades10.png'),
 ('spades', 11, 'spades11.png'),
 ('spades', 12, 'spades12.png'),
-('spades', 13, 'spades13.png');
+('spades', 13, 'spades13.png'),
+('back', 0, 'card_back.png');
