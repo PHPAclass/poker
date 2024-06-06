@@ -50,13 +50,13 @@ main();
             <img src="./img/cards/<?= $_SESSION['used'][11] ?>" alt="トランプ">
             <img src="./img/cards/<?= $_SESSION['used'][12] ?>" alt="トランプ">
         </div>
-        <div>
+        <form action="" class="action">
             <p>プレイヤー1</p>
             <button>フォールト</button>
             <button>コール</button>
             <button>レイズ</button>
             <p>所持: <?= $my_point ?></p>
-        </div>
+        </form>
     </section>
 </body>
 </html>
