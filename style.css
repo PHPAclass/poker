@@ -41,20 +41,24 @@ header h1 hover{
     justify-content: center;
     margin-top: 50px;
 }
-.player2{
-    margin-left: 50px;
-}
 .middle{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 200px;
 }
 .pot{
+    width: 1200px;
     margin-top: 50px;
     text-align: center;
 }
 .player1{
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+    text-align: center;
+    margin-top: 150px;
+}
+.action button{
+    font-size: 40px;
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    transition: 0.5s;
 }
