@@ -51,7 +51,7 @@ main();
             <img src="./img/cards/<?= $_SESSION['used'][12] ?>" alt="トランプ">
         </div>
         <div>
-            <form method="POST" action="backend.php" class="">
+            <form method="POST" action="backend.php" class="action">
                 <p>プレイヤー1</p>
                 <button type="submit" value="fold" name="select">フォールト</button>
                 <button type="submit" value="call" name="select">コール</button>
