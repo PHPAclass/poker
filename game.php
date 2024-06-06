@@ -12,46 +12,41 @@ main();
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <?php
-        foreach ($_SESSION['cards'] as $card) {
-            echo $card, '<br>';
-        }    
-    ?>
     <section>
         <p>プレイヤー3</p>
         <div>
-            <img src="<?= $img_path[0] ?>" alt="トランプ">
-            <img src="<?= $img_path[1] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][0]?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][1] ?>" alt="トランプ">
         </div>
     </section>
     <section>
         <p>プレイヤー2</p>
         <div>
-            <img src="<?= $img_path[0] ?>" alt="トランプ">
-            <img src="<?= $img_path[1] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][2] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][3] ?>" alt="トランプ">
         </div>
     </section>
     <section>
         <p>プレイヤー4</p>
         <div>
-            <img src="<?= $img_path[2] ?>" alt="トランプ">
-            <img src="<?= $img_path[3] ?>" alt="トランプ">
-            <img src="<?= $img_path[4] ?>" alt="トランプ">
-            <img src="<?= $img_path[5] ?>" alt="トランプ">
-            <img src="<?= $img_path[6] ?>" alt="トランプ">       
+            <img src="./img/cards/<?= $_SESSION['used'][4] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][5] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][6] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][7] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][8] ?>" alt="トランプ">       
         </div>
         <p>ポット:<?= $pot_point ?></p>
     </section>
     <section>
         <div>
-            <img src="<?= $img_path[0] ?>" alt="トランプ">
-            <img src="<?= $img_path[1] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][9] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][10] ?>" alt="トランプ">
         </div>
     </section>
     <section>
         <div>
-            <img src="<?= $img_path[7] ?>" alt="トランプ">
-            <img src="<?= $img_path[8] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][11] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['used'][12] ?>" alt="トランプ">
         </div>
         <div>
             <p>プレイヤー1</p>
