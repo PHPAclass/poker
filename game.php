@@ -33,7 +33,7 @@ main();
                 <img src="./img/cards/<?= $_SESSION['used'][5] ?>" alt="トランプ">
                 <img src="./img/cards/<?= $_SESSION['used'][6] ?>" alt="トランプ">
                 <img src="./img/cards/<?= $_SESSION['used'][7] ?>" alt="トランプ">
-                <img src="./img/cards/<?= $_SESSION['used'][8] ?>" alt="トランプ">       
+                <img src="./img/cards/<?= $_SESSION['used'][8] ?>" alt="トランプ">
             </div>
             <p>ポット:<?= $pot_point ?></p>
         </section>
@@ -51,11 +51,13 @@ main();
             <img src="./img/cards/<?= $_SESSION['used'][12] ?>" alt="トランプ">
         </div>
         <div>
-            <p>プレイヤー1</p>
-            <button>フォールト</button>
-            <button>コール</button>
-            <button>レイズ</button>
-            <p>所持: <?= $my_point ?></p>
+            <form method="POST" action="backend.php" class="">
+                <p>プレイヤー1</p>
+                <button type="submit" value="fold" name="select">フォールト</button>
+                <button type="submit" value="call" name="select">コール</button>
+                <button type="submit" value="raise" name="select">レイズ</button>
+                <p>所持: <?= $my_point ?></p>
+            </form>
         </div>
     </section>
 </body>

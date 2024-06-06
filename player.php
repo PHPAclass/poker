@@ -15,4 +15,19 @@ class Player
     {
         return $this->money;
     }
+
+    public function setMoney($money)
+    {
+        return $this->money = $money;
+    }
+
+    public function getStack()
+    {
+        return $this->stack;
+    }
+
+    public function setStack($stack)
+    {
+        return $this->stack = $stack;
+    }
 }
