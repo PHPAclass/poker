@@ -12,7 +12,11 @@ main();
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <?php echo($cards); ?>
+    <?php
+        foreach ($_SESSION['cards'] as $card) {
+            echo $card, '<br>';
+        }    
+    ?>
     <section>
         <p>プレイヤー3</p>
         <div>

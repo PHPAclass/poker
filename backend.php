@@ -7,15 +7,13 @@
         start();
     }
 
-
     function start()
     {
         $your_status = new Player(10000, 100);
         $enemy1_status = new Player(10000, 100);
         
-        $cards = dealCards();
+        $_SESSION['cards'] = dealCards();
     }
-
 
     function dealCards()
     {
