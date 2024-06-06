@@ -1,23 +1,28 @@
 <?php
     session_start();
+    require_once('player.php');
 
     function main()
     {
-        return 0;
+        start();
     }
-
 
     function start()
     {
-        return 0;
+        $your_status = new Player(10000, 100);
+        $enemy1_status = new Player(10000, 100);
+        
+        $_SESSION['cards'] = dealCards();
     }
-
 
     function dealCards()
     {
-        return 0;
-    }
+        $numbers = range(0, 51);
+        shuffle($numbers);
 
+        return array_slice($numbers, 0, 4);
+
+    }
 
     function rise()
     {
@@ -37,6 +42,16 @@
     }
 
     function continueGame()
+    {
+        return 0;
+    }
+
+    function judge()
+    {
+        return 0;
+    }
+
+    function enemyAction()
     {
         return 0;
     }
