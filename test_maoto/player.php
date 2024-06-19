@@ -4,6 +4,7 @@ class Player
     private $money;
     private $stack;
     private $card;
+    private $playing = True;
 
     public function __construct($money, $stack)
     {
@@ -52,5 +53,9 @@ class Player
         foreach($this->card as $card){
             echo "<p><img src='./img/cards/".$card['image'].".png'></p>";
         }
+    }
+    public function setPlaying($playing)
+    {
+        $this->playing = $playing;
     }
 }

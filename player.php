@@ -4,6 +4,7 @@ class Player
     private $money;
     private $stack;
     private $card;
+    private $playing;
 
     public function __construct($money, $stack)
     {
@@ -30,4 +31,20 @@ class Player
     {
         return $this->stack = $stack;
     }
+
+    public function getCard()
+    {
+        return $this->card;
+    }
+
+    public function setCard($card)
+    {
+        $this->card = $card;
+    }
+
+    public function setPlaying($playing)
+    {
+        $this->playing = $playing;
+    }
+
 }
