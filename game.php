@@ -1,5 +1,6 @@
 <?php
 require_once('backend.php');
+ini_set('display_errors', 1);
 main();
 ?>
 
@@ -16,7 +17,7 @@ main();
         <p>プレイヤー3</p>
         <div>
             <img src="./img/cards/<?= $_SESSION['enemy3_status']->getCard()[0]?>" alt="トランプ">
-            <img src="./img/cards/<?= $_SESSION['enemy3_status']->getCard()[1] ?>" alt="トランプ">
+            <img src="./img/cards/<?= $_SESSION['enemy3_status']->getCard()[1]?>" alt="トランプ">
         </div>
     </section>
     <div class="middle">
@@ -35,7 +36,8 @@ main();
                 <img src="./img/cards/<?= $_SESSION['pots'][3] ?>" alt="トランプ">
                 <img src="./img/cards/<?= $_SESSION['pots'][4] ?>" alt="トランプ">
             </div>
-            <p>ポット:<?= $pot_point ?></p>
+            <h3>誰のターンか:<?=$_SESSION['player_turn']?></h3>
+            <h3>総ポット数:<?=$_SESSION['total_pot']?></h3>
         </section>
         <section class="player4">
             <p>プレイヤー4</p>
@@ -51,13 +53,13 @@ main();
             <img src="./img/cards/<?= $_SESSION['your_status']->getCard()[1] ?>" alt="トランプ">
         </div>
         <div>
-            <form method="POST" action="" class="action">
-                <p>プレイヤー1</p>
+        <p>プレイヤー1</p>
+        <form method="POST" action="" class="action">
+
                 <button type="submit" value="fold" name="select">フォールト</button>
                 <button type="submit" value="call" name="select">コール</button>
                 <button type="submit" value="raise" name="select">レイズ</button>
-                <p>所持: <?= $my_point ?></p>
-            </form>
+          </form>
         </div>
     </section>
 </body>
