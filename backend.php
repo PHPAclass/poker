@@ -5,20 +5,21 @@
 
     function main()
     {
-        session_destroy();
-        start();
+      //post通信が来た時
         if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['select']))){
             switch ($_POST['select'])
             {
-                case "raise":
+                case "raise": //raiseが押された時に呼ぶ関数
                     raise();
-                case "call":
+                case "call": //callが押された時に呼ぶ関数
                     call();
-                case "fold":
+                case "fold": //foldが押された時に呼ぶ関数
                     fold();
             }
+        } else{ //ゲームが始まった時の処理
+          session_destroy();
+          start();
         }
-        var_dump($_SESSION['your_status']);
     }
 
     function start()
@@ -31,7 +32,24 @@
         $_SESSION['enemy4_status'] = new Player(10000, 100);
 
 
-        $_SESSION['used'] = dealCards();
+
+        $loadedCards = dealCards(); //ランダムでカードを持ってきてる
+
+
+        // 下の部分でプレイヤーのカードを全て管理してる(sessionに入れてる)
+        $enemy3_card = array($loadedCards[0],$loadedCards[1]);
+        $_SESSION['enemy3_status']->setCard($enemy3_card);
+
+        $enemy2_card = array($loadedCards[2],$loadedCards[3]);
+        $_SESSION['enemy2_status']->setCard($enemy2_card);
+
+        $_SESSION['pots'] = array($loadedCards[4],$loadedCards[5],$loadedCards[6],$loadedCards[7],$loadedCards[8]);
+
+        $enemy4_card = array($loadedCards[9],$loadedCards[10]);
+        $_SESSION['enemy4_status']->setCard($enemy4_card);
+
+        $your_card = array($loadedCards[11],$loadedCards[12]);
+        $_SESSION['your_status']->setCard($your_card);
     }
 
     function dealCards()

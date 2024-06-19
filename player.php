@@ -30,4 +30,15 @@ class Player
     {
         return $this->stack = $stack;
     }
+
+    public function getCard()
+    {
+        return $this->card;
+    }
+
+    public function setCard($card)
+    {
+        $this->card = $card;
+    }
+
 }
