@@ -4,7 +4,7 @@ class Player
     private $money;
     private $stack;
     private $card;
-    private $playing;
+    private $playing = True;
 
     public function __construct($money, $stack)
     {
@@ -40,6 +40,11 @@ class Player
     public function setCard($card)
     {
         $this->card = $card;
+    }
+
+    public function getPlaying()
+    {
+        return $this->playing;
     }
 
     public function setPlaying($playing)

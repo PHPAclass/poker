@@ -59,7 +59,7 @@
         $card = select($number);
         return $card;
     }
-    
+
 
     function raise($name)
     {
@@ -181,7 +181,7 @@
             }
         }
         $your_pattern["pair"] = $p;
-    
+
         $copy = $your_cards;
         $n = array_column($copy, 'num');
         array_multisort($n, SORT_ASC, $copy);
@@ -201,8 +201,8 @@
         if($flag == false){
             $your_pattern["streat"] = ["bool"=>$flag,"start"=>0];
         }
-        
-    
+
+
         $f = [];
         for($i = 0; $i < 5; $i++){
             $c = 0;
@@ -218,7 +218,7 @@
         }else{
             $your_pattern["flush"] = false;
         }
-        
+
         $c = 0;
         $role = "none";
         if(count($your_pattern["pair"]) > 0){
