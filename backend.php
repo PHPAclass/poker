@@ -12,11 +12,15 @@
           {
             case "raise": //raiseが押された時に呼ぶ関数
               raise();
+              break;
             case "call": //callが押された時に呼ぶ関数
               call();
+              break;
             case "fold": //foldが押された時に呼ぶ関数
               fold();
+              break;
           }
+          judge();
 
         } else{
           start();
@@ -66,9 +70,13 @@
 
         $cards = array_slice($numbers, 0, 13);
         foreach ($cards as $card) {
-            $img_path[] = sql($card);
+            $sql = sql($card);
+            $i['num'] = $sql['num'];
+            $i['type'] = $sql['type'];
+            $i['image'] = $sql['image'];
+            $result[] = $i;
         }
-        return $img_path;
+        return $result;
     }
 
 
@@ -95,8 +103,9 @@
     function fold()
     {
 
-        // $user = $_SESSION['player_turn'];
-        // $_SESSION["{$user}_status"]->setPlaying(False);
+
+        $user = $_SESSION['player_turn'];
+        $_SESSION["{$user}_status"]->setPlaying(False);
 
         // switch ($_SESSION['player_turn'])
         // {
@@ -129,9 +138,30 @@
     function continueGame()
     {
       return 0;
+
     }
 
-    function judge()
+    /**
+     * $_SESSION['pots'] はフィールド上のカード
+     *
+     * $cardsには、potの5枚とユーザーの手札の2枚の合計7枚欲しい
+     */
+    function judge($cards)
+    {
+        $values = [];
+        $type = [];
+
+        foreach ($cards as $card) {
+            $values[] = $card[0];
+            $type[] = $card[1];
+        }
+
+        sort($values);
+
+        $isflush = count(array_unique($type)) == 1;
+    }
+
+    function checkRole($your_cards)
     {
 
     }
@@ -152,14 +182,14 @@
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-            $query = "SELECT image FROM card_variations where id = {$id}";
+            $query = "SELECT * FROM card_variations where id = {$id}";
             $stmt = $dbh->query($query);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $stmt = null;
             $dbh = null;
             $dsn = null;
-            return $result['image'];
+            return $result;
 
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
