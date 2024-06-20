@@ -158,8 +158,58 @@
 
         sort($values);
 
-        $isflush = count(array_unique($type)) == 1;
+        $isFlush = count(array_unique($type)) == 1;
+        $isStraight = isStraight($values);
+        $valueCounts = array_count_values($values);
+        $counts = array_values($valueCounts);
+        sort($counts);
+    
+        if ($isFlush && $isStraight) {
+            return 'ストレートフラッシュ';
+        }
+        if ($counts == [1, 4]) {
+            return 'フォーカード';
+        }
+        if ($counts == [2, 3]) {
+            return 'フルハウス';
+        }
+        if ($isFlush) {
+            return 'フラッシュ';
+        }
+        if ($isStraight) {
+            return 'ストレート';
+        }
+        if ($counts == [1, 1, 3]) {
+            return 'スリーカード';
+        }
+        if ($counts == [1, 2, 2]) {
+            return 'ツーペア';
+        }
+        if ($counts == [1, 1, 1, 2]) {
+            return 'ワンペア';
+        }
+    
+        return 'ハイカード';
     }
+    
+    function isStraight($values) {
+      $uniqueValues = array_unique($values);
+      sort($uniqueValues);
+  
+      if (count($uniqueValues) != 5) {
+          return false;
+      }
+  
+      if ($uniqueValues[4] - $uniqueValues[0] == 4) {
+          return true;
+      }
+  
+      if ($uniqueValues == [2, 3, 4, 5, 14]) {
+          return true;
+      }
+  
+      return false;
+  }
 
     function checkRole($your_cards)
     {
