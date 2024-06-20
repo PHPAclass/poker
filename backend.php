@@ -20,7 +20,14 @@
               fold();
               break;
           }
-          judge();
+          $cardList = []; //judgeに渡すカードのリスト
+          foreach ($cards as $_SESSION['pots']){
+            array_push($cardList, $cards);
+          }
+          foreach ($cards as $_SESSION['your_status']){
+            array_push($cardList, $cards);
+          }
+          judge($cardList); //ここでjudgeに引数を渡したい(7枚のカード自分 + 場のカード)
 
         } else{
           start();
