@@ -20,14 +20,21 @@
               fold();
               break;
           }
-          $cardList = []; //judgeに渡すカードのリスト
-          foreach ($cards as $_SESSION['pots']){
-            array_push($cardList, $cards);
-          }
-          foreach ($cards as $_SESSION['your_status']){
-            array_push($cardList, $cards);
-          }
-          judge($cardList); //ここでjudgeに引数を渡したい(7枚のカード自分 + 場のカード)
+        //   $cardList = []; //judgeに渡すカードのリスト
+        //   foreach ($cards as $_SESSION['pots']){
+        //     array_push($cardList, $cards);
+        //   }
+        //   foreach ($cards as $_SESSION['your_status']){
+        //     array_push($cardList, $cards);
+        //   }
+        $seven_cards = sevenCard();
+        $result = [];
+        foreach ($seven_cards as $key=>$value){
+            // $result[$key] =
+
+            echo "<p>".$key." : ".judge($value)."</p>";
+        }
+           //ここでjudgeに引数を渡したい(7枚のカード自分 + 場のカード)
 
         } else{
           start();
@@ -109,8 +116,6 @@
 
     function fold()
     {
-
-
         $user = $_SESSION['player_turn'];
         $_SESSION["{$user}_status"]->setPlaying(False);
 
@@ -145,7 +150,30 @@
     function continueGame()
     {
       return 0;
+    }
 
+    function sevenCard()
+    {
+        $pot_cards = $_SESSION['pots'];
+        // $player_cards = $_SESSION['your_status']->getCard();
+        // array_push($player_cards, $pot_cards);
+        // $enemy2_cards = $_SESSION['enemy2_status']->getCard();
+        // $enemy3_cards = $_SESSION['enemy3_status']->getCard();
+        // $enemy4_cards = $_SESSION['enemy4_status']->getCard();
+
+        // $seven = [];
+        // $seven['player'] = array_push($player_cards, $pot_cards);
+        // $seven['enemy2'] = array_push($enemy2_cards, $pot_cards);
+        // $seven['enemy3'] = array_push($enemy3_cards, $pot_cards);
+        // $seven['enemy4'] = array_push($enemy4_cards, $pot_cards);
+
+        $players = ['your','enemy2','enemy3','enemy4'];
+        foreach($players as $player){
+            $cards = $_SESSION["{$player}_status"]->getCard();
+            $seven[$player] = array_merge($cards,$pot_cards,array());
+
+        }
+        return $seven;
     }
 
     /**
@@ -159,18 +187,25 @@
         $type = [];
 
         foreach ($cards as $card) {
-            $values[] = $card[0];
-            $type[] = $card[1];
+            $values[] = $card["num"];
+            $type[] = $card["type"];
         }
-
         sort($values);
 
-        $isFlush = count(array_unique($type)) == 1;
+
+
+        $flushcount = (array_count_values($type));
+        $isFlush = False;
+        foreach ($flushcount as $value => $count){
+            if ($count >= 5) {
+                $isFlush = True;
+            }
+        }
         $isStraight = isStraight($values);
         $valueCounts = array_count_values($values);
         $counts = array_values($valueCounts);
         sort($counts);
-    
+
         if ($isFlush && $isStraight) {
             return 'ストレートフラッシュ';
         }
@@ -195,27 +230,40 @@
         if ($counts == [1, 1, 1, 2]) {
             return 'ワンペア';
         }
-    
+
         return 'ハイカード';
     }
-    
+
     function isStraight($values) {
-      $uniqueValues = array_unique($values);
-      sort($uniqueValues);
-  
-      if (count($uniqueValues) != 5) {
-          return false;
-      }
-  
-      if ($uniqueValues[4] - $uniqueValues[0] == 4) {
-          return true;
-      }
-  
-      if ($uniqueValues == [2, 3, 4, 5, 14]) {
-          return true;
-      }
-  
-      return false;
+        $uniqueValues = array_unique($values);
+        sort($uniqueValues);
+        var_dump($uniqueValues);
+
+        // $hoge = ["a", "b", "c", "d", "e"];
+        // $hogehoge = array_slice($hoge, 1, 3, true);
+        // var_dump($hogehoge);
+
+
+
+        if (count($uniqueValues) <= 5) {
+            return false;
+        } else {
+            for ($i=4;$i>=7;$i++){
+                $j = $i - 4;
+                if($uniqueValues[$i] - $uniqueValues[$j] != 4){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+
+
+        // if ($uniqueValues == [2, 3, 4, 5, 14]) {
+        //     return true;
+        // }
+
+        // return false;
   }
 
     function checkRole($your_cards)
@@ -280,3 +328,8 @@
       }
       $_SESSION['turn'] += 1;
     }
+
+
+    $test = [1,2,3,4,5,7,9];
+    $test1 = isStraight($test);
+    var_dump($test1);
