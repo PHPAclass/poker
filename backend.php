@@ -209,10 +209,10 @@
         if ($isFlush && $isStraight) {
             return 'ストレートフラッシュ';
         }
-        if ($counts == [1, 4]) {
+        if ($counts == [1, 1, 1, 4]) {
             return 'フォーカード';
         }
-        if ($counts == [2, 3]) {
+        if ($counts == [1, 1, 1, 2, 3]) {
             return 'フルハウス';
         }
         if ($isFlush) {
@@ -221,13 +221,13 @@
         if ($isStraight) {
             return 'ストレート';
         }
-        if ($counts == [1, 1, 3]) {
+        if ($counts == [1, 1, 1, 1, 3]) {
             return 'スリーカード';
         }
-        if ($counts == [1, 2, 2]) {
+        if ($counts == [1, 1, 1, 2, 2]) {
             return 'ツーペア';
         }
-        if ($counts == [1, 1, 1, 2]) {
+        if ($counts == [1, 1, 1, 1, 1, 2]) {
             return 'ワンペア';
         }
 
@@ -237,19 +237,22 @@
     function isStraight($values) {
         $uniqueValues = array_unique($values);
         sort($uniqueValues);
-        var_dump($uniqueValues);
-
-        // $hoge = ["a", "b", "c", "d", "e"];
-        // $hogehoge = array_slice($hoge, 1, 3, true);
-        // var_dump($hogehoge);
-
-
 
         if (count($uniqueValues) <= 5) {
             return false;
         } else {
-            for ($i=4;$i>=7;$i++){
+            for ($i=4;$i<=7;$i++){
                 $j = $i - 4;
+                if ($uniqueValues[0] === 1) {
+                    $end = end($uniqueValues);
+                    if ($end != 13) {
+                        return false;
+                    }
+                    $count = count($uniqueValues);
+                    if ($end - $uniqueValues[$count - 4] == 3){
+                        return true;
+                    }
+                }
                 if($uniqueValues[$i] - $uniqueValues[$j] != 4){
                     return false;
                 } else {
@@ -328,8 +331,3 @@
       }
       $_SESSION['turn'] += 1;
     }
-
-
-    $test = [1,2,3,4,5,7,9];
-    $test1 = isStraight($test);
-    var_dump($test1);
