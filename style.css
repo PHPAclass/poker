@@ -4,9 +4,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: white;
 }
 body{
-    background-image: url('img/poker_bg.jpg');
+    /* background-image: url('img/poker_bg.jpg'); */
     background-size: 110%;
 }
 header{
