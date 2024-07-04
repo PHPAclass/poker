@@ -10,7 +10,7 @@ main();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section class="player3">
@@ -38,7 +38,6 @@ main();
             </div>
             <h3>誰のターンか:<?=$_SESSION['player_turn']?></h3>
             <h3>総ポット数:<?=$_SESSION['total_pot']?></h3>
-            <h3>プレイ中かどうか:<?php var_dump($_SESSION['your_status'])?></h3>
         </section>
         <section class="player4">
             <p>プレイヤー4</p>
